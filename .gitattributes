@@ -1,0 +1,4 @@
+* text=auto
+*.als text
+*.md text
+*.jpg -text
