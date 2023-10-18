@@ -65,24 +65,28 @@ assert nothingMovesWithoutFarmer {
       (some s'.far-s.far =>
          (Farmer in s.near && Farmer in s'.far && crossRiverNear2Far[s,s']))
 }                
-          
+check nothingMovesWithoutFarmer for 8
+
+assert whenMovingEverythingFromNearToFarFarmerIsNeverAlone {
+    (first.near=Object && last.far=Object) => all s:State | (s.far != Farmer) && (s.near != Farmer)
+}
+check whenMovingEverythingFromNearToFarFarmerIsNeverAlone for 8
+         
 // starting with everything on near, move everything to far
-// How many moves do we need at a minmum?
-scenario1: run { first.near=Object && last.far=Object } for exactly 4 Object,  8 State
+// how many moves do we need at a minmum?
+// note that for ordered signatures, the scope constraint is an exact cardinality restriction (i.e., not an upper bound)
+scenario1: run { first.near=Object && last.far=Object } for 4 Object, 8 State
 
 // starting with everything on far, move everything but fox to near
-scenario2: run { first.near=Object && last.far=Object-Fox } for 8
+scenario2: run { first.far=Object && last.near=Object-Fox } for 8
 
-// starting with everything on far, move 3 objects to far
+// starting with everything on near, move 3 objects to far
 scenario3: run { first.near=Object && #last.far=3 } for 8
 
-// starting with everything on near, move everything to far, while ensuring
-// that fox is alone on near after nth move
-scenario4: run { first.near=Object && last.far=Object && first.next.next.next.near=Fox } for 8
+// what are possible initial states such that after 2 moves the Fox is alone on near and 
+// after 6 moves everything is on far?
+scenario4: run { last.far=Object && first.next.next.near=Fox } for 7
 
-// move everything to far in n moves, while ensuring that fox is alone
-// on near after second move
-scenario5: run { last.far=Object && first.next.next.near=Fox } for 9
 
-check1: check nothingMovesWithoutFarmer for 8
+
 

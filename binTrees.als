@@ -33,12 +33,12 @@ fact Facts {
    // children are different
    all b : BinTree | all n : nodes[b] | !isLeaf[n] => (n.leftChild != n.rightChild)
    // balanced
-   ll b : BinTree | # (b.root.leftChild).*(leftChild + rightChild) = # (b.root.rightChild).*(leftChild + rightChild)
+   all b : BinTree | # (b.root.leftChild).*(leftChild + rightChild) = # (b.root.rightChild).*(leftChild + rightChild)
 }
-
+ 
 pred show {
    #BinTree = 2
-   #Node = 7
+   #Node = 6
 }
 
 run show for 8

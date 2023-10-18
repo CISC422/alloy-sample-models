@@ -19,6 +19,10 @@ fact AllReachable {
    all n:Node | some l:List | n in (l.head.*nextN)
 }
 
+fun reachable[l : List] : set Node {
+   l.head.*nextN
+}
+
 fact NoSharing {
    // for any two lists l1 and l2, the nodes contained in l1 and l2 is disjoint
    // all l1, l2 : List | nodes in l1 disjoint from nodes in l2
@@ -39,16 +43,26 @@ assert OneTail {
    // all l : List | one {n : reachable[l] | no n.nextN}
    all l : List | one n : reachable[l] | no n.nextN
    // all l : List | all n1,n2 : reachable[l] | (no n1.nextN && no n2.nextN) implies n1=n2
-}
-
-
-// check OneTail for 2 List, 3 Node
+} 
 check OneTail for exactly 2 List, exactly 3 Node
 
-fun reachable[l : List] : set Node {
-   l.head.*nextN
+assert HeadHasNoPred {
+//	all l:List | "head of l does not have a predecessor"
+//	all l:List | no n:Node | "head of l is successor of n"
+//	all l:List | no n:Node | (l.head) in n.nextN
+//	all l:List | no n:Node | n in (l.head).~nextN
+	all l:List | no n:Node | n in nextN.(l.head)
 }
+check HeadHasNoPred for 4
 
+// every node either has a predecessor or a successor
+assert A1 {all n:Node | (some nextN.n) or (some n.nextN)}
+// assert A1 {all n:Node | (some n.~nextN) or (some n.nextN)}
+check A1 for 8
+
+// every node inside a list w/ at least two nodes either has a pre- or a succ-cessor
+assert A2 {(#List=1 && #Node>1) => all n:Node | (some nextN.n) or (some n.nextN)}
+check A2 for 8
 
 // pred Show[] {
 //    some List 

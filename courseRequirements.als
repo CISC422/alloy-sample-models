@@ -4,7 +4,7 @@
 abstract sig Student {
    plan:  lone Plan,
    taken: set Course,
-   grades: taken -> one Grade
+   grades: taken -> one Grade  // 'grades' is a 3-ary relation
 }
 sig Freshman, Sophomore, Junior, Senior extends Student {}
 
@@ -19,7 +19,7 @@ sig Advanced extends Course {
 }
 
 abstract sig Grade {}
-one sig A, B, C, D, F extends Grade {}
+one sig A,B,C,D,F extends Grade {}	// singleton signatures representing grades
 
 sig Dept {
    teaches : set Course,
@@ -75,6 +75,5 @@ pred graduateImpliesAllPrereqs {
 assert graduatesCorrect {
   graduateImpliesAllPrereqs
 }
-check graduatesCorrect for 6
-
+check graduatesCorrect for 8
 
