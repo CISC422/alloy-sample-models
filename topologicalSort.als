@@ -8,20 +8,20 @@ open util/ordering[Pos]
 sig Pos {}
 
 sig Task {
-   dependsOn: set Task,
+   dependsOn : set Task,
    pos : Pos
 }
 
 fact {
-   all p : Pos | one pos.p        // positions are neither shared nor unused
+   all p:Pos | one pos.p        // positions are neither shared nor unused
 }
 
 pred tasksAreTopSorted[] {
-   all t1, t2 : Task | t2 in t1.dependsOn => lt[t2.pos, t1.pos]    // topological sort
+   all t1,t2:Task | t2 in t1.dependsOn => lt[t2.pos,t1.pos]    // topological sort
 }
 
 pred dependsOnIsAyclic[] {
-   all t : Task | t !in t.^dependsOn
+   all t:Task | t !in t.^dependsOn
 }
 
 assert A1 {
@@ -36,12 +36,14 @@ assert A3 {
   dependsOnIsAyclic[] implies tasksAreTopSorted[] 
 }
 
-sc_top: run {tasksAreTopSorted[]} for 5
-sc_noTop: run {!tasksAreTopSorted[]} for 5
+scTop: run {tasksAreTopSorted[]} for 5
+scNoTop: run {!tasksAreTopSorted[]} for 1
 
-ch_alwaysTop: check A1 for 8
-ch_topImpliesAcylic: check A2 for 8
-ch_AcyclicImpliesTop: check A3 for 8
+alwaysTop: check A1 for 8
+check A2 for 8
+check A3 for 8
+topImpliesAcylic: check A2 for 8
+acyclicImpliesTop: check A3 for 8
 
 
           

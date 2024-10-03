@@ -67,7 +67,8 @@ fact SuccessiveStacksAreTheResultOfAnOperation {
       (some d:Data | push[s1,d,s2] or pop[s1,s2,d])
 }            
 
-// create a sequence of stack operations ending in an empty stack
+// create a sequence of stack operations ending in an empty stack 
+// note that for ordered sigs, scope is an exact cardinality constraint
 stackScenario1: run {isEmpty[last]} for 7
 
 // create a sequence of stack operations that causes the top two values

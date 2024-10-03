@@ -75,7 +75,7 @@ check whenMovingEverythingFromNearToFarFarmerIsNeverAlone for 8
 // starting with everything on near, move everything to far
 // how many moves do we need at a minmum?
 // note that for ordered signatures, the scope constraint is an exact cardinality restriction (i.e., not an upper bound)
-scenario1: run { first.near=Object && last.far=Object } for 4 Object, 8 State
+scenario1: run { first.near=Object && last.far=Object } for 4 Object, 10 State
 
 // starting with everything on far, move everything but fox to near
 scenario2: run { first.far=Object && last.near=Object-Fox } for 8

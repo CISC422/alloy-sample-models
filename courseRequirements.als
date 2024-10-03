@@ -75,5 +75,5 @@ pred graduateImpliesAllPrereqs {
 assert graduatesCorrect {
   graduateImpliesAllPrereqs
 }
-check graduatesCorrect for 8
+check graduatesCorrect for 1 but 2 Course
 
