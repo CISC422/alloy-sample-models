@@ -1,3 +1,4 @@
+// CISC/CMPE 328, CISC 422
 module Graphs 
 	
 sig Node {}
