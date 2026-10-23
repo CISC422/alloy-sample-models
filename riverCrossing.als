@@ -1,4 +1,4 @@
-// CISC/CMPE 422/835
+// CISC/CMPE 328, CISC 422
 /*
 To be able to use Alloy to solve the problem, we need to
 - define a suitable notion of 'state' (with 'crossRiver'
@@ -7,7 +7,7 @@ To be able to use Alloy to solve the problem, we need to
   sequences of moves as linear sequence of states
 
 For more details, see
-- Sections 9.3.4 of courseware
+- the Alloy section in the course notes, or
 - http://alloytools.org/tutorials/online
 */
 

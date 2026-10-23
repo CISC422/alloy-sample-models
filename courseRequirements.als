@@ -1,4 +1,4 @@
-// CISC/CMPE 422/835
+// CISC/CMPE 328, CISC 422
 // inspired by https://github.com/franklingu/collections/tree/master/Alloy/Samples
 
 abstract sig Student {

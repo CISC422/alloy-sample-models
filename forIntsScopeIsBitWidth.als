@@ -1,4 +1,4 @@
-// CISC/CMPE 422/835
+// CISC/CMPE 328, CISC 422
 // For integers (i.e., elements of signature 'Int'), scope means 'bitwidth'.
 // You may get surprising analysis results when using the 'cardinality' operator '#' with a bidwidth that is too small.
 // Default bitwidth is '4' which allows for 16 integers (-8 to 7).

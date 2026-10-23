@@ -1,4 +1,4 @@
-// CISC/CMPE 422/835
+// CISC/CMPE 328, CISC 422
 module Stacks
 
 sig Data {}
